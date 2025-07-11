@@ -34,13 +34,13 @@ public class PeliculaController {
 
     @GetMapping("/disponibles")
     public List<Pelicula> obtenerPeliculasDisponibles() {
-        System.out.println("Obteniendo películas disponibles");
+        System.out.println("Obteniendo el listado de películas disponibles");
         return peliculaService.obtenerPeliculasDisponibles();
     }
 
     @GetMapping("/nodisponibles")
     public List<Pelicula> obtenerPeliculasNoDisponibles() {
-        System.out.println("Obteniendo películas no disponibles");
+        System.out.println("Obteniendo el listado de películas no disponibles");
         return peliculaService.obtenerPeliculasNoDisponibles();
     }
 
