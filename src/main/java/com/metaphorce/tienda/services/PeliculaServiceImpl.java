@@ -1,10 +1,10 @@
 package com.metaphorce.tienda.services;
 
 import com.metaphorce.tienda.entidades.Pelicula;
+import com.metaphorce.tienda.excepciones.PeliculaNoEncontradaException;
 import com.metaphorce.tienda.repositories.PeliculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -20,6 +20,9 @@ public class PeliculaServiceImpl implements PeliculaService {
 
     @Override
     public void eliminarPelicula(int id) {
+        if (!repository.existsById(id)) {
+            throw new PeliculaNoEncontradaException("Película con id " + id + " no encontrada.");
+        }
         repository.deleteById(id);
     }
 
@@ -40,10 +43,9 @@ public class PeliculaServiceImpl implements PeliculaService {
 
     @Override
     public void marcarComoDisponible(int id) {
-        Pelicula pelicula = repository.findById(id).orElse(null);
-        if (pelicula != null) {
-            pelicula.setDisponible(true);
-            repository.save(pelicula);
-        }
+        Pelicula pelicula = repository.findById(id)
+                .orElseThrow(() -> new PeliculaNoEncontradaException("Película con id " + id + " no encontrada."));
+        pelicula.setDisponible(true);
+        repository.save(pelicula);
     }
 }

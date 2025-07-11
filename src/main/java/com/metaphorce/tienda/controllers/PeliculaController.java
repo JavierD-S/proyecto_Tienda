@@ -4,7 +4,7 @@ import com.metaphorce.tienda.entidades.Pelicula;
 import com.metaphorce.tienda.services.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -15,7 +15,7 @@ public class PeliculaController {
     private PeliculaService peliculaService;
 
     @PostMapping
-    public Pelicula agregarPelicula(@RequestBody Pelicula pelicula) {
+    public Pelicula agregarPelicula(@Valid @RequestBody Pelicula pelicula) {
         return peliculaService.agregarPelicula(pelicula);
     }
 
