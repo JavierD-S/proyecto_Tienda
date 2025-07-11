@@ -16,31 +16,37 @@ public class PeliculaController {
 
     @PostMapping
     public Pelicula agregarPelicula(@Valid @RequestBody Pelicula pelicula) {
+        System.out.println("Agregando película: " + pelicula.getNombre());
         return peliculaService.agregarPelicula(pelicula);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarPelicula(@PathVariable int id) {
+        System.out.println("Borrando película con ID: " + id);
         peliculaService.eliminarPelicula(id);
     }
 
     @GetMapping
     public List<Pelicula> obtenerPeliculas() {
+        System.out.println("Obteniendo todas las películas");
         return peliculaService.obtenerPeliculas();
     }
 
     @GetMapping("/disponibles")
     public List<Pelicula> obtenerPeliculasDisponibles() {
+        System.out.println("Obteniendo películas disponibles");
         return peliculaService.obtenerPeliculasDisponibles();
     }
 
     @GetMapping("/nodisponibles")
     public List<Pelicula> obtenerPeliculasNoDisponibles() {
+        System.out.println("Obteniendo películas no disponibles");
         return peliculaService.obtenerPeliculasNoDisponibles();
     }
 
     @PutMapping("/marcarDisponible/{id}")
     public void marcarComoDisponible(@PathVariable int id) {
+        System.out.println("Marcando como disponible la película con ID: " + id);
         peliculaService.marcarComoDisponible(id);
     }
 }
